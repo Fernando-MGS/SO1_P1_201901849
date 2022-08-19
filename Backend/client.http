@@ -1,0 +1,13 @@
+### Request getTest
+POST http://localhost:4000/test
+Content-Type: application/json
+
+{
+    "Placa":"P123ABC",
+    "Marca":"Toyota",
+    "Modelo":2021,
+    "Serie":"Corola",
+    "Color":"Rojo"
+}
+
+###
