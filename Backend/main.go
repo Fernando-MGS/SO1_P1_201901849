@@ -151,7 +151,7 @@ func errorResponse(w http.ResponseWriter, message string, httpStatusCode int) {
 
 func main() {
 	ctx, _ := context.WithTimeout(context.Background(), 10*time.Second)
-	client, _ = mongo.Connect(ctx, options.Client(), options.Client().ApplyURI("mongodb://localhost:8080"))
+	client, _ = mongo.Connect(ctx, options.Client(), options.Client().ApplyURI("mongodb://database:8080"))
 	router := mux.NewRouter()
 	fmt.Println("SERVIDOR EN EL PUERTO 4000")
 	router.HandleFunc("/insertCar", insertCar).Methods("POST")

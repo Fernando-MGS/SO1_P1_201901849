@@ -1,5 +1,5 @@
 ### Request getTest
-POST http://localhost:4000/insertCar
+POST http://localhost:5000/insertCar
 Content-Type: application/json
 
 {
@@ -38,7 +38,8 @@ Content-Type: application/json
 
 ###
 
- PUT  http://localhost:4000/insertCar
+PUT  http://localhost:4000/insertCar
+
 Content-Type: application/json
 
 {
@@ -50,7 +51,7 @@ Content-Type: application/json
 }
 
 ####
-POST http://localhost:4000/updateCar
+PUT http://localhost:4000/updateCar
 Content-Type: application/json
 
 [
@@ -71,8 +72,9 @@ Content-Type: application/json
 ]
 
 ###
-DELETE http://localhost:4000/updateCar
+DELETE http://localhost:4000/deleteCar
 Content-Type: application/json
+
 {
         "Placa":"P545AFA"
 }
