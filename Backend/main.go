@@ -3,7 +3,6 @@ package main
 import (
 	"context"
 	"encoding/json"
-	"errors"
 	"fmt"
 	"log"
 	"net/http"
@@ -53,6 +52,7 @@ func insertCar(w http.ResponseWriter, r *http.Request) {
 	json.NewEncoder(w).Encode(result)
 	fmt.Println("flag 5")
 	errorResponse(w, "Archivo Recibido", http.StatusOK)
+	newLog("INSERT")
 }
 
 func updateCar(w http.ResponseWriter, r *http.Request) {
@@ -76,6 +76,7 @@ func updateCar(w http.ResponseWriter, r *http.Request) {
 	json.NewEncoder(w).Encode(result)
 	//fmt.Println("flag 5")
 	errorResponse(w, "Archivo Recibido", http.StatusOK)
+	newLog("UPDATE")
 }
 
 func deleteCar(w http.ResponseWriter, r *http.Request) {
@@ -96,6 +97,7 @@ func deleteCar(w http.ResponseWriter, r *http.Request) {
 	json.NewEncoder(w).Encode(result)
 	//fmt.Println("flag 5")
 	errorResponse(w, "Archivo Recibido", http.StatusOK)
+	newLog("DELETE")
 }
 
 func getCars(w http.ResponseWriter, r *http.Request) {
@@ -115,30 +117,26 @@ func getCars(w http.ResponseWriter, r *http.Request) {
 	}
 	fmt.Println(listCars)
 	json.NewEncoder(w).Encode(listCars)
+	newLog("GET")
 }
 
-func newLog(w http.ResponseWriter, r *http.Request) {
-	headerContentTtype := r.Header.Get("Content-Type")
-	if headerContentTtype != "application/json" {
-		errorResponse(w, "Content Type is not application/json", http.StatusUnsupportedMediaType)
-		return
-	}
-	var newLog Logs
-	var unmarshalErr *json.UnmarshalTypeError
-	decoder := json.NewDecoder(r.Body)
-	decoder.DisallowUnknownFields()
-	err := decoder.Decode(&newLog)
+func newLog(Type string) { //
+	t := time.Now()
+	fecha := fmt.Sprintf("%d-%02d-%02dT%02d:%02d:%02d",
+		t.Year(), t.Month(), t.Day(),
+		t.Hour(), t.Minute(), t.Second())
+	log := Logs{Type: Type, Time: fecha}
+	collection := client.Database("db").Collection("logs")
+	fmt.Println("flag 2")
+	ctx, err := context.WithTimeout(context.Background(), 10*time.Second)
 	if err != nil {
-		if errors.As(err, &unmarshalErr) {
-			errorResponse(w, "Bad Request. Wrong Type provided for field "+unmarshalErr.Field, http.StatusBadRequest)
-		} else {
-			errorResponse(w, "Bad Request "+err.Error(), http.StatusBadRequest)
-		}
-		return
+		fmt.Println(err)
 	}
-	fmt.Print("El log es ")
-	fmt.Println(newLog)
-	errorResponse(w, "Archivo Recibido", http.StatusOK)
+	result, er := collection.InsertOne(ctx, log)
+	if er != nil {
+		fmt.Println(er)
+	}
+	fmt.Println(result)
 }
 
 // ERRORES DE RESPONSE
@@ -157,7 +155,7 @@ func main() {
 	router := mux.NewRouter()
 	fmt.Println("SERVIDOR EN EL PUERTO 4000")
 	router.HandleFunc("/insertCar", insertCar).Methods("POST")
-	router.HandleFunc("/updateCar", updateCar).Methods("POST")
+	router.HandleFunc("/updateCar", updateCar).Methods("PUT")
 	router.HandleFunc("/deleteCar", deleteCar).Methods("DELETE")
 	router.HandleFunc("/getCars", getCars).Methods("GET")
 	log.Fatal(http.ListenAndServe(":4000", router))
