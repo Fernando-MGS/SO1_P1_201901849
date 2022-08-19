@@ -1,5 +1,5 @@
 ### Request getTest
-POST http://localhost:4000/test
+POST http://localhost:4000/insertCar
 Content-Type: application/json
 
 {
@@ -11,3 +11,68 @@ Content-Type: application/json
 }
 
 ###
+
+POST http://localhost:4000/insertCar
+Content-Type: application/json
+
+{
+    "Placa":"P545AFA",
+    "Marca":"Isuzu",
+    "Modelo":2018,
+    "Serie":"Rodeo",
+    "Color":"Gris"
+}
+
+###
+
+GET http://localhost:4000/getCars
+Content-Type: application/json
+
+{
+    "Placa":"P545AFA",
+    "Marca":"Isuzu",
+    "Modelo":2018,
+    "Serie":"Rodeo",
+    "Color":"Gris"
+}
+
+###
+
+ PUT  http://localhost:4000/insertCar
+Content-Type: application/json
+
+{
+    "Placa":"P545AFA",
+    "Marca":"Isuzu",
+    "Modelo":2018,
+    "Serie":"Rodeo",
+    "Color":"Gris"
+}
+
+####
+POST http://localhost:4000/updateCar
+Content-Type: application/json
+
+[
+    {
+        "Placa":"P545AFA",
+        "Marca":"Isuzu",
+        "Modelo":2018,
+        "Serie":"Rodeo",
+        "Color":"Gris"
+    },
+    {
+        "Placa":"P545AFA",
+        "Marca":"Isuzu",
+        "Modelo":2019,
+        "Serie":"Rodeo",
+        "Color":"Azul"
+    }
+]
+
+###
+DELETE http://localhost:4000/updateCar
+Content-Type: application/json
+{
+        "Placa":"P545AFA"
+}
