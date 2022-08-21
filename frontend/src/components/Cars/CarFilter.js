@@ -19,7 +19,7 @@ const CarFilter = (props) => {
 
     return (
         
-        <div className="input-group mb-3">
+        <div className="input-group mb-3" id ="filter">
         <div className="input-group-prepend">
         <div className="btn-group btn-group-toggle group-sm" role="group" aria-label="Basic example">
             <button type="button" onClick={event => setFilter(0)} className="btn btn-outline-warning ">Marca</button>

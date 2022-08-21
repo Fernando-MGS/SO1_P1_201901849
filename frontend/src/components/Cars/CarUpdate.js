@@ -20,7 +20,7 @@ export const CarUpdate = (props) => {
     }
 
     return (
-        <div>            
+        <div id="upgrade">            
             <h1>ACTUALIZAR AUTO</h1>
             <br></br>
             <form>

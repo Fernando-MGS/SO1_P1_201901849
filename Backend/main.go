@@ -175,7 +175,7 @@ func Cors(w http.ResponseWriter, r *http.Request) {
 
 func main() {
 	ctx, _ := context.WithTimeout(context.Background(), 10*time.Second)
-	client, _ = mongo.Connect(ctx, options.Client(), options.Client().ApplyURI("mongodb://localhost:27017"))
+	client, _ = mongo.Connect(ctx, options.Client(), options.Client().ApplyURI("mongodb://database:27017"))
 	router := mux.NewRouter()
 	headers := handlers.AllowedHeaders([]string{"X-Requested-With", "Content-Type", "Authorization"})
 	methods := handlers.AllowedMethods([]string{"GET", "POST", "PUT", "DELETE"})

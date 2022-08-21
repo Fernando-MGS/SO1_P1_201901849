@@ -7,10 +7,13 @@ services:
     image: mongo
     ports:
       - "8080:27017"
+    volumes:
+      - ./data:/data/db
 
   backend:
     container_name: backend
     restart: always
+    image: fernandomgs/backend_p1_201901849
     build: ./Backend
     ports:
       - "5000:4000"
@@ -18,4 +21,14 @@ services:
       - database
     links:
       - database
+
+  frontend:
+    container_name: frontend
+    restart: always
+    image: fernandomgs/frontend_p1_201901849
+    build: ./frontend
+    ports:
+      - "3000:3000"
+    links:
+      - backend
     

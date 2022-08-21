@@ -9,10 +9,25 @@ export const Menu = () => {
                 <div className="collapse navbar-collapse" id="navbarColor01">
                     <ul className="navbar-nav ml-auto">
                         <li className="nav-item">
-                            <a className="nav-link" >
+                            <a className="nav-link" href="#filter">
                                 SO1 KDC
                             </a>
                         </li>                        
+                        <li className="nav-item">
+                            <a className="nav-link" href='#registro'>
+                                Registro
+                            </a>
+                        </li>
+                        <li className="nav-item" >
+                            <a className="nav-link" href='#insert'>
+                                Nuevo Auto
+                            </a>
+                        </li>
+                        <li className="nav-item">
+                            <a className="nav-link" href='#upgrade'>
+                                Actualizar Datos
+                            </a>
+                        </li>
                     </ul>
                 </div>
             </div>

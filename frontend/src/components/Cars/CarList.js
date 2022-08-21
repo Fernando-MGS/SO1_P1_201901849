@@ -33,7 +33,7 @@ const CarList = (props) => {
     }, [])
 
     return (
-        <div className="container">
+        <div className="container" id="registro">
             <br></br>
             <h1>AUTOS REGISTRADOS</h1>
             <table className="table table-hover table-dark">

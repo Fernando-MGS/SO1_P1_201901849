@@ -65,7 +65,7 @@ const CarInsert = () => {
     }
 
     return (
-        <div>
+        <div id="insert">
             <h1>INGRESAR AUTO NUEVO</h1>
             <br></br>
             <form>

@@ -1,15 +1,15 @@
 import axios from 'axios'
 
 export const getCars = async () => {
-    return await axios.get('http://localhost:4000/getCars')
+    return await axios.get('/getCars')
 }
 
 export const delCar = (placa) => {
     /*return async () => {
-        return await axios.delete('http://localhost:4000/deleteCar')
+        return await axios.delete('http://backend:4000/deleteCar')
     }*/
     (async () => {
-        const rawResponse = await fetch('http://localhost:4000/deleteCar', {
+        const rawResponse = await fetch('/deleteCar', {
           method: 'DELETE',
           headers: {
             'Accept': 'application/json',
@@ -24,10 +24,10 @@ export const delCar = (placa) => {
 
 export const newCar = (data) => {
     /*return async () => {
-        return await axios.delete('http://localhost:4000/deleteCar')
+        return await axios.delete('http://backend:4000/deleteCar')
     }*/
     (async () => {
-        const rawResponse = await fetch('http://localhost:4000/insertCar', {
+        const rawResponse = await fetch('/insertCar', {
           method: 'POST',
           headers: {
             'Accept': 'application/json',
@@ -42,10 +42,10 @@ export const newCar = (data) => {
 
 export const updateCar = (data) => {
     /*return async () => {
-        return await axios.delete('http://localhost:4000/deleteCar')
+        return await axios.delete('http://backend:4000/deleteCar')
     }*/
     (async () => {
-        const rawResponse = await fetch('http://localhost:4000/updateCar', {
+        const rawResponse = await fetch('/updateCar', {
           method: 'PUT',
           headers: {
             'Accept': 'application/json',
